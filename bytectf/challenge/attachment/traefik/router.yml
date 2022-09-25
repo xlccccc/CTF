@@ -1,0 +1,23 @@
+http:
+  routers:
+    router0:
+      entryPoints:
+      - web
+      service: backend0
+      rule: "PathPrefix(`/api/v1/`) && !Query(`dev=`)"
+    router1:
+      entryPoints:
+      - web
+      service: backend1
+      rule: "PathPrefix(`/debug/`)"
+  services:
+    backend0:
+      loadBalancer:
+        servers:
+        - url: http://127.0.0.1:8081/
+        passHostHeader: false
+    backend1:
+      loadBalancer:
+        servers:
+        - url: http://127.0.0.1:6060/
+        passHostHeader: false
