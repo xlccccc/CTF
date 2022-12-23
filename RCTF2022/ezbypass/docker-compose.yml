@@ -1,0 +1,33 @@
+services:
+ nginx:
+    image: nginx:1.15
+    ports:
+      - "0.0.0.0:8899:80"
+    restart: always
+    volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - internal_network
+      - out_network
+ web:
+    build: ./web
+    restart: always
+    links:
+      - "db"
+    depends_on:
+      - "db"
+    networks:
+      - internal_network
+ db:
+    build: ./db
+    restart: always
+    networks:
+      - internal_network
+networks:
+    internal_network:
+        internal: true
+        ipam:
+            driver: default
+    out_network:
+        ipam:
+            driver: default

