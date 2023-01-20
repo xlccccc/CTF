@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+    <link rel="stylesheet" href="css/user_style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<h1 contenteditable="true">Hello <br>@Model.name</h1>
+
+<svg>
+    <filter id="snowtext">
+        <!-- highlight -->
+        <feOffset in="SourceAlpha" dx="0.333" dy="1.667" result="0"></feOffset>
+        <feGaussianBlur stdDeviation="10" in="0" result="1"></feGaussianBlur>
+
+        <feSpecularLighting surfaceScale="10" specularConstant="0.8" specularExponent="15" in="1" result="2">
+            <fePointLight x="0" y="-10000" z="300"></fePointLight>
+        </feSpecularLighting>
+
+        <feComposite in="2" in2="SourceAlpha" operator="in" result="3"></feComposite>
+
+        <!-- shadow   -->
+        <feOffset in="SourceAlpha" dx="-0.333" dy="-1.667" result="4"></feOffset>
+        <feGaussianBlur stdDeviation="10" in="4" result="5"></feGaussianBlur>
+
+        <feSpecularLighting surfaceScale="10" specularConstant="1.8" specularExponent="6" in="5" result="6">
+            <fePointLight x="0" y="10000" z="300"></fePointLight>
+        </feSpecularLighting>
+
+        <feComposite in="6" in2="SourceAlpha" operator="in" result="7"></feComposite>
+
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="7" result="8"></feColorMatrix>
+
+        <feComposite k1="0" k2="0.8" k3="0.5" k4="0" in="3" in2="8" operator="arithmetic" result="9"></feComposite>
+
+        <feMerge in="9" result="10">
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+            <feMergeNode in="9"></feMergeNode>
+        </feMerge>
+
+        <feOffset in="SourceAlpha" dx="3" dy="3" result="11"></feOffset>
+
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0 " in="11" result="12"></feColorMatrix>
+
+        <feGaussianBlur stdDeviation="3" in="12" result="13"></feGaussianBlur>
+
+        <feMerge in="13" result="14">
+            <feMergeNode in="13"></feMergeNode>
+            <feMergeNode in="10"></feMergeNode>
+        </feMerge>
+
+    </filter>
+</svg>
+
+</body>
+</html>

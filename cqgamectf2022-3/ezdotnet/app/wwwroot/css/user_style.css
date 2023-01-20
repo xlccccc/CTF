@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	text-align: center;
+}
+body {
+	font-size: 6vmin;
+	font-weight: 900;
+	color: white;
+	font-family: "Titan One", cursive;
+	line-height: 1;
+	filter: url(#snowtext);
+	text-transform: uppercase;
+}
+body::after {
+	pointer-events: none;
+	content: "";
+	position: fixed;
+	inset: 0;
+	background-color: rgb(0 0 125 / 0.1);
+	background-image: url(/img/fresh-snow.png);
+}
+
+svg {
+	position: fixed;
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
