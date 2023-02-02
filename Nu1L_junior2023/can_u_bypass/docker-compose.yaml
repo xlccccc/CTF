@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web1:
+    build: ./web
+    restart: always
+    ports:
+      - 8881:8888
+    links:
+      - "db1"
+    depends_on:
+      - "db1"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+#          memory: 1G
+  db1:
+    build: ./db
+    restart: always
+    privileged: true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+#          memory: 8G
