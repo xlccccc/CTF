@@ -1,0 +1,10 @@
+FROM php:8-apache
+
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list\
+    && apt update && apt install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+ADD ./raw /var/www/html
+RUN chmod 777 -R /var/www/html
